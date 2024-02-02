@@ -1,10 +1,7 @@
 from neuronpy import Neuron
 from neuronpy import Activations
 
-input = [1, 0, 0,
-          1, 0, 0,
-          1, 0, 0
-]
+inputValues = []
 
 weightsL = [1, -0.1, -1,
             1, -0.1, -1,
@@ -19,13 +16,24 @@ weightsR = [-1, -0.1, 1,
             -1, -0.1, 1,
 ]
 
-leftLine = Neuron(input, weightsL, Activations.sigmoid)
-middleLine = Neuron(input, weightsM, Activations.sigmoid)
-rightLine = Neuron(input, weightsR, Activations.sigmoid)
+inputArray = []
+print("Enter input values (3x3 array)")
+for i in range(0,3):
+    inputArray.append(input().split(","))
+for arr in inputArray:
+    for val in arr:
+        inputValues.append(float(val))
+
+leftLine = Neuron(inputValues, weightsL, Activations.sigmoid, False)
+middleLine = Neuron(inputValues, weightsM, Activations.sigmoid, False)
+rightLine = Neuron(inputValues, weightsR, Activations.sigmoid, True)
 
 leftLine.calculate()
 middleLine.calculate()
 rightLine.calculate()
 
 
-print(f"Вероятности: \n Первый столбец: {leftLine.output} \n Второй столбец: {middleLine.output} \n Третий столбец: {rightLine.output}")
+print(f"Predictions: \n Column 1: {leftLine.output} \n Column 2: {middleLine.output} \n Column 3: {rightLine.output}")
+
+print("Press any key to exit")
+input()
