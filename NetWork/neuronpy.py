@@ -8,14 +8,16 @@ class Activations(Enum):
 class Neuron:
     """Сlass that implements behavior similar to a nerve cell (neuron). Based on the mathematical model of the McCulloch—Pitts neuron"""
     
-    inputs = [float]
+    inputs = []
     """Neuron input values"""
-    weights = [float]
+    weights = []
     """Neuron weights values"""
     activation = Activations.relu
     """Neuron activation function. Relu is default"""
     normalize = False
     """If true, neuron input values will normalized from 0 to 1"""
+    offset = 0
+    """Offset of neuron value"""
     output = .0
     """Neuron input values"""
     
@@ -38,6 +40,7 @@ class Neuron:
             for i in range(0, len(weightedInputs)):
                 weightedInputs[i] *= self.weights[i]
                 self.output += weightedInputs[i]
+            self.output += self.offset
             if(self.activation == Activations.sigmoid):
                 self.output = 1 / (1 + math.pow(math.e, -self.output))
             elif(self.activation == Activations.relu):
