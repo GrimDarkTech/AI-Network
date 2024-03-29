@@ -23,9 +23,9 @@ class Neuron:
     offset: float
     """Offset value for neuron"""
     
-    def __init__(self, inputs, weights, activation, normalize):
+    def __init__(self, weights: list, activation: Activations, normalize: bool):
         """Inits new neuron"""
-        self.inputs = inputs
+        self.inputs = []
         self.weights = weights
         self.activation = activation
         self.normalize = normalize
@@ -33,7 +33,7 @@ class Neuron:
     
     def calculate(self):
         """Calculates output value for neuron"""
-        weightedInputs = [float]
+        weightedInputs: list[float] = []
         self.output = 0
         if(len(self.inputs) == len(self.weights)):
             if(self.normalize):

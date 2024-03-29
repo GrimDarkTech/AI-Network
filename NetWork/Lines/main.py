@@ -1,10 +1,6 @@
 from neuronpy import Neuron
 from neuronpy import Activations
 
-import layerpy
-
-import networkpy
-
 inputValues = []
 
 weightsL = [1, -0.1, -1,
@@ -28,16 +24,16 @@ for arr in inputArray:
     for val in arr:
         inputValues.append(float(val))
 
-neurons = []
+leftLine = Neuron(inputValues, weightsL, Activations.sigmoid, False)
+middleLine = Neuron(inputValues, weightsM, Activations.sigmoid, False)
+rightLine = Neuron(inputValues, weightsR, Activations.sigmoid, True)
 
-neuron = Neuron(inputValues, weightsL, Activations.sigmoid, False)
-neurons.append(neuron)
+leftLine.calculate()
+middleLine.calculate()
+rightLine.calculate()
 
-layer = layerpy.Layer(neurons)
 
-layer.calculate()
-
-print(layer.outputs)
+print(f"Predictions: \n Column 1: {leftLine.output} \n Column 2: {middleLine.output} \n Column 3: {rightLine.output}")
 
 print("Press any key to exit")
 input()

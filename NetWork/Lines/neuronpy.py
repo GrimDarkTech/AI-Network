@@ -20,8 +20,6 @@ class Neuron:
     """Offset of neuron value"""
     output: float
     """Neuron input values"""
-    offset: float
-    """Offset value for neuron"""
     
     def __init__(self, inputs, weights, activation, normalize):
         """Inits new neuron"""
