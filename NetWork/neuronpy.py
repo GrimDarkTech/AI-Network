@@ -30,6 +30,7 @@ class Neuron:
         self.activation = activation
         self.normalize = normalize
         self.offset = 0
+        self.output = 0
     
     def calculate(self):
         """Calculates output value for neuron"""
