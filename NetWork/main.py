@@ -1,9 +1,9 @@
 from neuronpy import Neuron
 from neuronpy import Activations
 
-import layerpy
+from layerpy import Layer  
 
-import networkpy
+from networkpy import Network
 
 #Inits weights
 
@@ -41,17 +41,17 @@ neurons.append(neuron)
 
 layers = []
 
-layer = layerpy.Layer(neurons)
+layer = Layer(neurons)
 
 layers.append(layer)
 
-layer = layerpy.Layer([Neuron([0, 0, 0], [-0.43, 0.1, 0.22], Activations.sigmoid, False)])
+layer = Layer([Neuron([0, 0, 0], [-0.43, 0.1, 0.22], Activations.sigmoid, False)])
 
 layers.append(layer)
 
 #Creating network
 
-network = networkpy.Network(layers)
+network = Network(layers)
 network.inputs = input_values
 
 network.calculate()
