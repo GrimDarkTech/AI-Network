@@ -1,6 +1,7 @@
 from neuronpy import Neuron
 from neuronpy import Activations
 
+import random
 
 class Layer:
     """Contains a list of neurons"""
@@ -9,13 +10,23 @@ class Layer:
     """List of neurons contained in layer"""
     outputs: list
     """List of output values of neurons contained in layer"""
-    
-    def __init__(self):
-        self.neurons = []
-        self.outputs = []
         
-    def __init__(self, neurons):
-        self.neurons = neurons
+    def __init__(self, **kwargs):
+        self.neurons = kwargs.get('neurons', [])
+        number_of_neurons = kwargs.get('number_of_neurons', 0)
+        number_of_inputs = kwargs.get('number_of_inputs', 0)
+        activation = kwargs.get('activation', Activations.sigmoid)
+        normalize = kwargs.get('normalize', False)
+
+        if(number_of_neurons != 0):
+            for i in range(0, number_of_neurons):
+                weights = []
+                inputs = []
+                for j in range(0, number_of_inputs):
+                    weights.append(random.random())
+                    inputs.append(1)
+                neuron = Neuron(inputs, weights, activation, normalize)
+                self.neurons.append(neuron)
         self.outputs = []
     
     def set_inputs(self, inputs: list):

@@ -41,12 +41,13 @@ neurons.append(neuron)
 
 layers = []
 
-layer = Layer(neurons)
-
+layer = Layer(neurons = neurons)
 layers.append(layer)
 
-layer = Layer([Neuron([0, 0, 0], [-0.43, 0.1, 0.22], Activations.sigmoid, False)])
+layer = Layer(number_of_neurons = 5, number_of_inputs = 3, activation = Activations.sigmoid, normalize = False)
+layers.append(layer)
 
+layer = Layer(number_of_neurons = 1, number_of_inputs = 5, activation = Activations.sigmoid, normalize = False)
 layers.append(layer)
 
 #Creating network
@@ -54,10 +55,11 @@ layers.append(layer)
 network = Network(layers)
 network.inputs = input_values
 
+
 network.calculate()
 print(network.outputs)
 
-network.learn([2], 0.05, 1000)
+network.learn([0.66], 0.05, 1000)
 network.calculate()
 
 print(network.outputs)

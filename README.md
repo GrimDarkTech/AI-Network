@@ -24,8 +24,14 @@ neuron = Neuron(input_values, weights, Activations.sigmoid, False)
 
 Конструктор слоя
 ``` Layer(neurons)```
+```Layer(number_of_neurons, number_of_inputs, activation, normalize)```
 
 - neurons - список нейронов для создания слоя;
+
+- number_of_neurons - количество нейронов в слое;
+- number_of_inputs - количество входов у каждого нейрона в слое;
+- activation - функция активации нейронов слоя. Рекомедуется Activations.sigmoid;
+- normalize - нормализация значений нейронов слоя. Рекомендуется False
 
 Пример:
 ```Python
@@ -43,8 +49,13 @@ neuron = Neuron(input_values, weightsR, Activations.sigmoid, False)
 neurons.append(neuron)
 
 #Создание слоя
-layer = Layer(neurons)
+layer = Layer(neurons = neurons)
+```
 
+Пример:
+```Python
+#Создание слоя с заданными параметрами
+layer = Layer(number_of_neurons = 1, number_of_inputs = 5, activation = Activations.sigmoid, normalize = False)
 ```
 
 ## Сеть
@@ -60,13 +71,13 @@ layer = Layer(neurons)
 layers = []
 
 #Создание слоя layer
-layer = Layer(neurons)
+layer = Layer(neurons = neurons)
 
 #Добавление слоя layer в список слоев layers
 layers.append(layer)
 
 #Создание дополнительного слоя layer с одним нейроном с тремя входами
-layer = Layer([Neuron([0, 0, 0], [-0.43, 0.1, 0.22], Activations.sigmoid, False)])
+layer = Layer(number_of_neurons = 1, number_of_inputs = 3, activation = Activations.sigmoid, normalize = False)
 
 #Добавление дополнительного слоя layer в список слоев layers
 layers.append(layer)
