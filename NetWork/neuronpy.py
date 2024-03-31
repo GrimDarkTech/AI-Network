@@ -20,8 +20,6 @@ class Neuron:
     """Offset of neuron value"""
     output: float
     """Neuron input values"""
-    offset: float
-    """Offset value for neuron"""
     error: float
     """Error variable for learning"""
     gradient: float
