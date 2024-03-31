@@ -22,6 +22,12 @@ class Neuron:
     """Neuron input values"""
     offset: float
     """Offset value for neuron"""
+    error: float
+    """Error variable for learning"""
+    gradient: float
+    """Gradient variable for learning"""
+    initial_weights: float
+    """Weights before network training"""
     
     def __init__(self, inputs, weights, activation, normalize):
         """Inits new neuron"""
@@ -31,6 +37,9 @@ class Neuron:
         self.normalize = normalize
         self.offset = 0
         self.output = 0
+        self.error = 0
+        self.gradient = 0
+        self.initial_weights = []
     
     def calculate(self):
         """Calculates output value for neuron"""
@@ -40,7 +49,8 @@ class Neuron:
             if(self.normalize):
                 for i in range(0, len(self.inputs)):
                     self.inputs[i] = self.inputs[i] / float(len(self.inputs))
-            weightedInputs = self.inputs
+            weightedInputs = self.inputs.copy()
+            
             for i in range(0, len(weightedInputs)):
                 weightedInputs[i] *= self.weights[i]
                 self.output += weightedInputs[i]
