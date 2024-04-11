@@ -23,8 +23,9 @@ class Network:
             self.layers[i].set_inputs(self.layers[i - 1].outputs)
             self.layers[i].calculate()
         
-        self.layers[len(self.layers) - 1].set_inputs(self.layers[len(self.layers) - 2].outputs)
-        self.layers[len(self.layers) - 1].calculate()
+        if(len(self.layers) > 1):
+            self.layers[len(self.layers) - 1].set_inputs(self.layers[len(self.layers) - 2].outputs)
+            self.layers[len(self.layers) - 1].calculate()
         self.outputs = self.layers[len(self.layers) - 1].outputs
 
     def learn(self, target_values: list, learning_rate: float, epochs: int):

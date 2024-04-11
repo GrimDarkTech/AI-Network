@@ -1,6 +1,10 @@
 from neuronpy import Neuron
 from neuronpy import Activations
 
+from layerpy import Layer  
+
+from networkpy import Network
+
 inputValues = []
 
 weightsL = [1, -0.1, -1,
@@ -16,24 +20,28 @@ weightsR = [-1, -0.1, 1,
             -1, -0.1, 1,
 ]
 
-inputArray = []
-print("Enter input values (3x3 array)")
-for i in range(0,3):
-    inputArray.append(input().split(","))
-for arr in inputArray:
-    for val in arr:
-        inputValues.append(float(val))
+inputValues = [0, 0, 1,
+              0, 0, 1,
+              0, 0, 1]
+
+neurons = []
 
 leftLine = Neuron(inputValues, weightsL, Activations.sigmoid, False)
+neurons.append(leftLine)
+
 middleLine = Neuron(inputValues, weightsM, Activations.sigmoid, False)
-rightLine = Neuron(inputValues, weightsR, Activations.sigmoid, True)
+neurons.append(middleLine)
 
-leftLine.calculate()
-middleLine.calculate()
-rightLine.calculate()
+rightLine = Neuron(inputValues, weightsR, Activations.sigmoid, False)
+neurons.append(rightLine)
 
+layer = Layer(neurons = neurons)
 
-print(f"Predictions: \n Column 1: {leftLine.output} \n Column 2: {middleLine.output} \n Column 3: {rightLine.output}")
+layer.calculate()
+print(layer.outputs)
+
+layer.calculate_kohonin()
+print(layer.outputs)
 
 print("Press any key to exit")
 input()

@@ -32,7 +32,7 @@ class Layer:
     def set_inputs(self, inputs: list):
         """Sets input values for layer"""
         for i in range(len(self.neurons)):
-            self.neurons[i].inputs = inputs
+            self.neurons[i].inputs = inputs.copy()
     
     def calculate(self):
         """Calculates output values for layer"""
@@ -40,5 +40,21 @@ class Layer:
         for neuron in self.neurons:
             neuron.calculate()
             self.outputs.append(neuron.output)
+
+    def calculate_kohonin(self):
+        """Calculates output values for Kohonin layer"""
+        self.outputs = []
+        for neuron in self.neurons:
+            neuron.calculate()
+
+        max = self.neurons[0].output
+        for n in range(0, len(self.neurons)):
+            if(self.neurons[n].output >= max):
+                max = self.neurons[n].output
+        for neuron in self.neurons:
+            if(neuron.output == max):
+                self.outputs.append(neuron.output)
+            else:
+                self.outputs.append(0)
             
             
