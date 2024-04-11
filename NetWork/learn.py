@@ -8,19 +8,19 @@ from networkpy import Network
 #Inits weights
 
 weightsL = [0.1, -0.1, -0.3,
-            0.2, -0.2, -0.101,
+            0.2, 0.2, -0.101,
             0.3, -0.3, -0.125,
 ]
-weightsM = [-0.12, 1.11, -1.1,
-            -0.22, 0, -0.21,
-            -0.563, 0.153, -0.41,
+weightsM = [-0.12, -0.2, -1.1,
+            -0.42, -0.45, -0.81,
+            -0.563, -0.153, -0.41,
 ]
 weightsR = [-0.1256, -0.222, 0.12,
             -0.45, -0.531, 0.2154,
             -0.374, -0.1253, 0.1454,
 ]
 
-input_values = [0.1, 2, 0.1,
+input_values = [0.1, 1, 0.1,
                 0.2, 1, 0.2,
                 0.1, 1, 0.1]
 
@@ -48,33 +48,35 @@ layers.append(layer)
 #Creating network
 
 network = Network(layers)
-network.inputs = [0.1, 2, 0.1,
-                  0.2, 1, 0.2,
-                  0.1, 1, 0.1]
 
 #Test before learning
-network.calculate()
-print(network.outputs)
-
-
 network.inputs = [0, 1, 0,
                   0, 1, 0,
                   0, 1, 0]
-network.learn([0, 1, 0], 0.05, 100)
+network.calculate()
+print(network.outputs)
 
-network.inputs = [1, 0, 0,
-                  1, 0, 0,
-                  1, 0, 0]
-network.learn([1, 0, 0], 0.05, 100)
+for i in range (0, 100):
 
-network.inputs = [0, 0, 1,
-                  0, 0, 1,
-                  0, 0, 1]
-network.learn([0, 0, 1], 0.05, 100)
+    network.inputs = [0, 1, 0,
+                    0, 1, 0,
+                    0, 1, 0]
+    network.learn([0, 1, 0], 0.05, 10)
 
+    network.inputs = [1, 0, 0,
+                    1, 0, 0,
+                    1, 0, 0]
+    network.learn([1, 0, 0], 0.05, 10)
+
+    network.inputs = [0, 0, 1,
+                    0, 0, 1,
+                    0, 0, 1]
+    network.learn([0, 0, 1], 0.05, 10)
+
+#Test after learn
 network.inputs = [0, 1, 0,
-                  0, 1, 0.1,
-                  0.1, 1, 0]
+                  0, 1, 0,
+                  0, 1, 0]
 network.calculate()
 
 print(network.outputs)

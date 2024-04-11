@@ -16,9 +16,9 @@ weightsR = [-1, -0.1, 1,
             -1, -0.1, 1,
 ]
 
-inputValues = [0, 0, 1,
-              0, 0, 1,
-              0, 0, 1]
+inputValues = [1, 0, 0,
+              1, 0, 0,
+              1, 0, 0]
 
 leftLine = Neuron(inputValues, weightsL, Activations.sigmoid, False)
 middleLine = Neuron(inputValues, weightsM, Activations.sigmoid, False)
